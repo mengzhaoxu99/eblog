@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
  */
 
 @Controller
-public class PostController {
+public class PostController extends BaseController{
 
 
 
     @GetMapping("/category/{id:\\d*}")
     public String category(@PathVariable("id") Long id){
+        req.setAttribute("currentCategoryId",id);
         return "post/category";
     }
 
