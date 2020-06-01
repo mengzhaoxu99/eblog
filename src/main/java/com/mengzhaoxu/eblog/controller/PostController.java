@@ -1,7 +1,8 @@
 package com.mengzhaoxu.eblog.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * @author yixin
@@ -14,5 +15,14 @@ public class PostController {
 
 
 
+    @GetMapping("/category/{id:\\d*}")
+    public String category(@PathVariable("id") Long id){
+        return "post/category";
+    }
+
+    @GetMapping("/post/{id:\\d*}")
+    public String detail(@PathVariable("id") Long id){
+        return "post/detail";
+    }
 
 }
