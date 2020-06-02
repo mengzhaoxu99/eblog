@@ -37,4 +37,11 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
                 .orderByDesc(order != null, order);
         return postMapper.selectPosts(page,wrapper);
     }
+
+
+    @Override
+    public PostVo selectById(Long id) {
+        PostVo postVo = postMapper.selectOnePost(new QueryWrapper<Post>().eq("p.id", id));
+        return postVo;
+    }
 }
