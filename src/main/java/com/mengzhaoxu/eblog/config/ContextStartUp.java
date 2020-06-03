@@ -3,6 +3,7 @@ package com.mengzhaoxu.eblog.config;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.mengzhaoxu.eblog.entity.Category;
 import com.mengzhaoxu.eblog.service.CategoryService;
+import com.mengzhaoxu.eblog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -22,9 +23,14 @@ import java.util.List;
 @Component
 public class ContextStartUp implements ApplicationRunner , ServletContextAware {
 
+    @Autowired
+    private PostService postService;
 
     @Autowired
     private CategoryService categoryService;
+
+
+
     ServletContext servletContext;
 
 
@@ -32,7 +38,12 @@ public class ContextStartUp implements ApplicationRunner , ServletContextAware {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         List<Category> categoryList = categoryService.list(new QueryWrapper<Category>().eq("status", 0));
+
+        postService.initWeekRank();
         servletContext.setAttribute("categoryList",categoryList);
+
+
+//        servletContext.setAttribute("categoryList",categoryList);
     }
 
     @Override

@@ -21,4 +21,9 @@ public interface PostService extends IService<Post> {
 
     //获取详情页
     PostVo selectById(Long id);
+
+    //初始化redis热榜数据
+    void initWeekRank();
+
+
 }
