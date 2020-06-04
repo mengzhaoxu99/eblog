@@ -92,7 +92,7 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
      */
     private void zunionAndStoreLastWeekForRank() {
         String destKey = RedisKeys.getPost(DateUtil.format(new Date(), DatePattern.PURE_DATE_FORMAT));
-        String key = RedisKeys.getWeekRank("");
+        String key = RedisKeys.getWeekRank();
         ArrayList<String > otherKeys = new ArrayList<>();
         for (int i = -6; i < 0; i++) {
 

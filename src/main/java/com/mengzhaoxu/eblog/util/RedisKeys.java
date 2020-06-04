@@ -31,8 +31,8 @@ public class RedisKeys {
     public static String getRankPost(String key) {
         return "rank:post:" + key;
     }
-    public static String getWeekRank(String key) {
-        return "week:rank:" + key;
+    public static String getWeekRank() {
+        return "week:rank" ;
     }
 
 
