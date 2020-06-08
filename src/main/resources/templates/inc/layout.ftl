@@ -1,9 +1,4 @@
 <#macro layout title>
-
-
-
-
-
     <!DOCTYPE html>
     <html>
     <head>
@@ -15,6 +10,9 @@
         <link rel="stylesheet" href="../res/layui/css/layui.css">
         <link rel="stylesheet" href="../res/css/global.css">
         <script src="../res/layui/layui.js"></script>
+        <script src="../res/layui/jquery.min.js"></script>
+
+
 
     </head>
     <body>
@@ -25,7 +23,7 @@
     <#nested />
     <#include "/inc/footer.ftl" />
     <script>
-        layui.cache.page = '';
+        // layui.cache.page = '';
         layui.cache.user = {
             username: '游客'
             ,uid: -1
