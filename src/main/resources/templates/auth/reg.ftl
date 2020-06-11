@@ -28,13 +28,13 @@
               <div class="layui-form-item">
                 <label for="L_username" class="layui-form-label">昵称</label>
                 <div class="layui-input-inline">
-                  <input type="text" id="L_username" name="username" required lay-verify="required" autocomplete="off" class="layui-input">
+                  <input type="text" id="L_username" name="username" required lay-verify="required"  autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
                 <label for="L_pass" class="layui-form-label">密码</label>
                 <div class="layui-input-inline">
-                  <input type="password" id="L_pass" name="pass" required lay-verify="required" autocomplete="off" class="layui-input">
+                  <input type="password" id="L_pass" name="password" required lay-verify="required" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">6到16个字符</div>
               </div>
@@ -51,11 +51,11 @@
                 </div>
                 <div >
 <#--                  capthca.jpg-->
-                  <img id="capthca" src="/capthca.jpg">
+                  <img id="capthca" src="capthca.jpg">
                 </div>
               </div>
               <div class="layui-form-item">
-                <button class="layui-btn" lay-filter="*" lay-submit>立即注册</button>
+                <button class="layui-btn" lay-filter="*" lay-submit alert="true">立即注册</button>
               </div>
               <div class="layui-form-item fly-form-app">
                 <span>或者直接使用社交账号快捷注册</span>
@@ -73,7 +73,7 @@
 <script>
   layui.cache.page = 'user';
   $("#capthca").click(function () {
-    this.src = "/capthca.jpg";
+    this.src = "capthca.jpg";
   });
 </script>
 

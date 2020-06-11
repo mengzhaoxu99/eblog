@@ -12,7 +12,7 @@
             c.NAME AS categoryName
         FROM
             post p
-            LEFT JOIN USER u ON p.user_id = u.id
+            LEFT JOIN user u ON p.user_id = u.id
             LEFT JOIN category c ON p.category_id = c.id
         ${ew.customSqlSegment}
 
@@ -28,7 +28,7 @@
             c.NAME AS categoryName
         FROM
             post p
-            LEFT JOIN USER u ON p.user_id = u.id
+            LEFT JOIN user u ON p.user_id = u.id
             LEFT JOIN category c ON p.category_id = c.id
         ${ew.customSqlSegment}
 

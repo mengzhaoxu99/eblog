@@ -4,13 +4,13 @@
 
     <select id="selectComments" resultType="com.mengzhaoxu.eblog.vo.CommentVo">
         SELECT
-            C.*,
+            c.*,
             u.id AS authorId,
             u.username AS authorName,
             u.avatar AS authorAvatar
         FROM
-            COMMENT C
-            LEFT JOIN USER U ON C.user_id = U.id
+            comment c
+            LEFT JOIN user u ON c.user_id = u.id
         ${ew.customSqlSegment}
     </select>
 </mapper>
