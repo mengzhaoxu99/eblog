@@ -5,6 +5,7 @@ import cn.hutool.captcha.CircleCaptcha;
 import cn.hutool.core.lang.Console;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
+import com.baomidou.mybatisplus.extension.api.R;
 import com.mengzhaoxu.eblog.common.result.CodeMsg;
 import com.mengzhaoxu.eblog.common.result.Result;
 import com.mengzhaoxu.eblog.entity.User;
@@ -112,7 +113,14 @@ public class AuthController extends BaseController{
             }
         }
         return Result.success(CodeMsg.SUCCESS_LOG).action("/");
+    }
 
+
+
+    @RequestMapping("user/logout")
+    public String logout(){
+        SecurityUtils.getSubject().logout();
+        return "redirect:/index";
     }
 
 

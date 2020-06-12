@@ -1,5 +1,6 @@
 package com.mengzhaoxu.eblog.config;
 
+import com.jagregory.shiro.freemarker.ShiroTags;
 import com.mengzhaoxu.eblog.template.HotsTemplate;
 import com.mengzhaoxu.eblog.template.PostsTemplate;
 import com.mengzhaoxu.eblog.template.TimeAgoMethod;
@@ -23,6 +24,7 @@ public class FreemarkerConfig {
         configuration.setSharedVariable("timeAgo", new TimeAgoMethod());
         configuration.setSharedVariable("posts", postsTemplate);
         configuration.setSharedVariable("hots", hotsTemplate);
+        configuration.setSharedVariable("shiro", new ShiroTags());
     }
 
 }

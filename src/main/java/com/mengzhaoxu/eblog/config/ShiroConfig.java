@@ -48,8 +48,8 @@ public class ShiroConfig {
 //
 //        hashMap.put("/res/**", "anon");
 //
-//        hashMap.put("/user/home", "auth");
-//        hashMap.put("/user/set", "auth");
+        hashMap.put("/user/home", "authc");
+        hashMap.put("/user/set", "authc");
 //        hashMap.put("/user/upload", "auth");
 //        hashMap.put("/user/index", "auth");
 //        hashMap.put("/user/public", "auth");
