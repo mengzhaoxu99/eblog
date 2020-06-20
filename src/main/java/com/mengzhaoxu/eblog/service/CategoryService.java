@@ -12,6 +12,4 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2020-06-01
  */
 public interface CategoryService extends IService<Category> {
-
-    void test();
 }
