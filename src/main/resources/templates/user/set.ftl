@@ -2,7 +2,7 @@
 
 <@layout "基本设置">
   <div class="layui-container fly-marginTop fly-user-main">
-    <@centerLeft level=2></@centerLeft>
+<#--    <@centerLeft level=2></@centerLeft>-->
 
     <div class="site-tree-mobile layui-hide">
       <i class="layui-icon">&#xe602;</i>
@@ -44,15 +44,16 @@
                 </div>
                 <div class="layui-inline">
                   <div class="layui-input-inline">
-                    <input type="radio" name="sex" value="0" <#if user.gender =='0'>checked</#if> title="男">
-                    <input type="radio" name="sex" value="1" <#if user.gender =='1'>checked</#if> title="女">
+                    <input type="radio" name="gender" value="0" <#if user.gender =='0'>checked</#if> title="男">
+                    <input type="radio" name="gender" value="1" <#if user.gender =='1'>checked</#if> title="女">
                   </div>
                 </div>
               </div>
               <div class="layui-form-item layui-form-text">
                 <label for="L_sign" class="layui-form-label">签名</label>
                 <div class="layui-input-block">
-                  <textarea placeholder="随便写些什么刷下存在感" id="L_sign"  name="sign" autocomplete="off" class="layui-textarea" style="height: 80px;">${user.sign}</textarea>
+<#--                  ${user.sign}-->
+                  <textarea placeholder="随便写些什么刷下存在感" id="L_sign"  name="sign" autocomplete="off" class="layui-textarea" style="height: 80px;"></textarea>
                 </div>
               </div>
               <div class="layui-form-item">
@@ -64,11 +65,12 @@
           <div class="layui-form layui-form-pane layui-tab-item">
             <div class="layui-form-item">
               <div class="avatar-add">
-                <p>建议尺寸168*168，支持jpg、png、gif，最大不能超过50KB</p>
+                <p>建议尺寸168*168，支持jpg、png、gif，最大不能超过5000KB</p>
                 <button type="button" class="layui-btn upload-img">
                   <i class="layui-icon">&#xe67c;</i>上传头像
                 </button>
-                <img src="<@shiro.principal property="avatar" />">
+                <img src="http://${user.avatar}" />
+<#--                <img src="<@shiro.principal property="avatar" />">-->
                 <span class="loading"></span>
               </div>
             </div>

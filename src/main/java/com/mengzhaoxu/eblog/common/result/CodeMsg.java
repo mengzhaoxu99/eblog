@@ -20,6 +20,7 @@ public class CodeMsg {
 	public static CodeMsg PASSWORD_ERROR = new CodeMsg(500215, "两次输入不一致");
 	public static CodeMsg LOGIN_ERROR = new CodeMsg(500215, "账号或密码格式错误");
 	public static CodeMsg USERNAME_ISNULL = new CodeMsg(500215, "昵称不能为空");
+	public static CodeMsg USERAVATAR_ISNULL = new CodeMsg(500215, "頭像不能为空");
 
 	//商品模块 5003XX
 	public static CodeMsg COUNT_ISNULL = new CodeMsg(500301, "库存不足");

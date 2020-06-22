@@ -8,8 +8,11 @@
 
 package com.mengzhaoxu.eblog.oss.cloud;
 
+import cn.hutool.core.util.StrUtil;
+import com.qiniu.common.QiniuException;
 import com.qiniu.common.Zone;
 import com.qiniu.http.Response;
+import com.qiniu.storage.BucketManager;
 import com.qiniu.storage.Configuration;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
@@ -24,6 +27,7 @@ import java.io.InputStream;
  * @author Mark sunlightcs@gmail.com
  */
 public class QiniuCloudStorageService extends CloudStorageService {
+    private BucketManager bucketManager;
     private UploadManager uploadManager;
     private String token;
 
@@ -54,6 +58,9 @@ public class QiniuCloudStorageService extends CloudStorageService {
         return config.getQiniuDomain() + "/" + path;
     }
 
+
+
+
     @Override
     public String upload(InputStream inputStream, String path) {
         try {
@@ -74,4 +81,19 @@ public class QiniuCloudStorageService extends CloudStorageService {
     public String uploadSuffix(InputStream inputStream, String suffix) {
         return upload(inputStream, getPath(config.getQiniuPrefix(), suffix));
     }
+
+
+
+    @Override
+    public String upload(byte[] data) {
+       return this.upload(data,getPath(config.getQiniuPrefix()));
+    }
+
+
+    @Override
+    public void delete(String key) throws QiniuException {
+        bucketManager.delete(config.getQiniuBucketName(),key);
+    }
+
+
 }

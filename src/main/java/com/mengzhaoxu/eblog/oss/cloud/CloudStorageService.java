@@ -10,6 +10,7 @@ package com.mengzhaoxu.eblog.oss.cloud;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
+import com.qiniu.common.QiniuException;
 
 import java.io.InputStream;
 import java.util.Date;
@@ -24,6 +25,25 @@ public abstract class CloudStorageService {
     /** 云存储配置信息 */
     CloudStorageConfig config;
 
+
+    /**
+     * 文件路径
+     * @param prefix 前缀
+     * @return 返回上传路径
+     */
+    public String getPath(String prefix) {
+        //生成uuid
+        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        //文件路径
+
+        String path = DateUtil.format(new Date(), "yyyyMMdd") + "/" + uuid;
+
+        if(StrUtil.isNotBlank(prefix)){
+            path = prefix + "/" + path;
+        }
+
+        return path ;
+    }
     /**
      * 文件路径
      * @param prefix 前缀
@@ -51,6 +71,8 @@ public abstract class CloudStorageService {
      * @return        返回http地址
      */
     public abstract String upload(byte[] data, String path);
+    public abstract String upload(byte[] data);
+
 
     /**
      * 文件上传
@@ -75,5 +97,13 @@ public abstract class CloudStorageService {
      * @return             返回http地址
      */
     public abstract String uploadSuffix(InputStream inputStream, String suffix);
+
+
+    /**
+     * 文件删除
+     * @param key           文件id
+     * @return             返回http地址
+     */
+    public abstract void delete(String key) throws QiniuException;
 
 }

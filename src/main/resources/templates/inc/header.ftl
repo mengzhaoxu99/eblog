@@ -42,7 +42,7 @@
                 <cite class="layui-hide-xs"><@shiro.principal property="username"/></cite>
                 <i class="iconfont icon-renzheng layui-hide-xs" title="认证信息：layui 作者"></i>
 <#--                <i class="layui-badge fly-badge-vip layui-hide-xs">VIP3</i>-->
-                <img src="<@shiro.principal property="avatar"/>">
+                <img src="http://<@shiro.principal property="avatar"/>">
               </a>
               <dl class="layui-nav-child">
                 <dd><a href="/user/set"><i class="layui-icon">&#xe620;</i>基本设置</a></dd>

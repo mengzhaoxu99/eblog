@@ -6,18 +6,17 @@ import com.mengzhaoxu.eblog.common.result.CodeMsg;
 import com.mengzhaoxu.eblog.common.result.Result;
 import com.mengzhaoxu.eblog.entity.Post;
 import com.mengzhaoxu.eblog.entity.User;
+import com.mengzhaoxu.eblog.oss.cloud.OSSFactory;
 import com.mengzhaoxu.eblog.service.PostService;
 import com.mengzhaoxu.eblog.service.UserService;
 import com.mengzhaoxu.eblog.shiro.AccountProfile;
-import com.sun.tools.javac.jvm.Code;
-import javafx.geometry.Pos;
+import com.qiniu.common.QiniuException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -59,7 +58,7 @@ public class UserController extends BaseController{
 
 
     @ResponseBody
-    @PostMapping("doset")
+    @PostMapping("set")
     public Result doSet(User user){
 
         if (StrUtil.isBlank(user.getUsername())){
@@ -90,6 +89,48 @@ public class UserController extends BaseController{
         return "/user/message";
     }
 
+
+    @ResponseBody
+    @RequestMapping("upload")
+    public Result uploadAvatar(@RequestParam("file") MultipartFile file) throws Exception {
+        if (file.isEmpty()){
+            return Result.error(CodeMsg.USERAVATAR_ISNULL);
+        }
+        String fileName = file.getOriginalFilename();
+        String suffix = fileName.substring(fileName.indexOf("."));
+        String url = OSSFactory.build().uploadSuffix(file.getBytes(),suffix);
+
+        if (url!=null){
+            AccountProfile profile = getProfile();
+            User user = userService.getById(profile.getId());
+            String key = user.getAvatar();
+            user.setAvatar(url);
+            boolean b = userService.updateById(user);
+            if (b){
+                profile.setAvatar(url);
+                if (!StrUtil.isBlank(key)){
+                    String deleteKey = key.substring(key.indexOf("/"));
+                    OSSFactory.build().delete(deleteKey);
+                }
+            }
+        }
+        return Result.success(CodeMsg.SUCCESS).action("/user/set#avatar");
+
+    }
+
+
+
+    @RequestMapping("test")
+    public Result test(){
+        String key= "2a3b4d098e274090851a8368d27de83c.jpg";
+        try {
+            OSSFactory.build().delete(key);
+        } catch (QiniuException e) {
+            e.printStackTrace();
+            return Result.error("cuowu");
+        }
+        return Result.success(CodeMsg.SUCCESS);
+    }
 
 
 

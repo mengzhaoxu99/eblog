@@ -1,3 +1,4 @@
+
 # DataSource Config
 spring:
   datasource:
@@ -14,6 +15,14 @@ spring:
   freemarker:
     cache: false
   redis:
-#    password: Mzx@123456
-    host: 112.124.22.34
+    password: Mzx@123456
+    host: 123.206.81.22
     port: 6379
+
+#qiniu:
+#  accessKey: kDBs-jbChhKuqs1ZAAzwOj6EAb7h1KTtL8-zSwOu
+#  secretKey: Ce3i0nQWZV-fdrHWYhpow6NaA3hGNJKeyX7zEJgB
+#  Prefix: upload
+#  # 对象储存
+#  bucket: filemzx # 空间名称
+#  domain: qc7zz5ce9.bkt.clouddn.com # 访问域名
