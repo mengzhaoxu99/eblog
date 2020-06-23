@@ -15,6 +15,7 @@ import com.qiniu.http.Response;
 import com.qiniu.storage.BucketManager;
 import com.qiniu.storage.Configuration;
 import com.qiniu.storage.UploadManager;
+import com.qiniu.storage.model.FileInfo;
 import com.qiniu.util.Auth;
 import org.apache.commons.io.IOUtils;
 
@@ -40,8 +41,11 @@ public class QiniuCloudStorageService extends CloudStorageService {
 
     private void init(){
         uploadManager = new UploadManager(new Configuration(Zone.autoZone()));
-        token = Auth.create(config.getQiniuAccessKey(), config.getQiniuSecretKey()).
-                uploadToken(config.getQiniuBucketName());
+        Auth auth = Auth.create(config.getQiniuAccessKey(), config.getQiniuSecretKey());
+
+        token = auth.uploadToken(config.getQiniuBucketName());
+
+        bucketManager = new BucketManager(auth,new Configuration(Zone.autoZone()));
     }
 
     @Override
@@ -93,6 +97,11 @@ public class QiniuCloudStorageService extends CloudStorageService {
     @Override
     public void delete(String key) throws QiniuException {
         bucketManager.delete(config.getQiniuBucketName(),key);
+    }
+
+    public FileInfo stat(String key) throws QiniuException {
+      return  bucketManager.stat(config.getQiniuBucketName(),key);
+
     }
 
 

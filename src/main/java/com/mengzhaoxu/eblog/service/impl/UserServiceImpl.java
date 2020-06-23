@@ -43,7 +43,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setUsername(user.getUsername());
         user.setPassword(SecureUtil.md5(user.getPassword()));
         user.setEmail(user.getEmail());
-        user.setAvatar("/res/images/avatar/default.png");
+        user.setAvatar("http://qc7zz5ce9.bkt.clouddn.com/test.png");
         user.setCreated(new Date());
         user.setPoint(0);
         user.setVipLevel(0);

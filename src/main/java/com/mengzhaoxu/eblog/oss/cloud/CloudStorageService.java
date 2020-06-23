@@ -11,6 +11,7 @@ package com.mengzhaoxu.eblog.oss.cloud;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import com.qiniu.common.QiniuException;
+import com.qiniu.storage.model.FileInfo;
 
 import java.io.InputStream;
 import java.util.Date;
@@ -105,5 +106,7 @@ public abstract class CloudStorageService {
      * @return             返回http地址
      */
     public abstract void delete(String key) throws QiniuException;
+
+    public abstract FileInfo stat(String key) throws QiniuException;
 
 }

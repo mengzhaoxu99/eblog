@@ -14,11 +14,4 @@ import java.util.Date;
 public class TestController {
 
 
-    public static void main(String[] args) {
-
-
-//        DateTime dateTime = DateUtil.lastWeek();
-        long l = DateUtil.betweenDay(new Date(), DateUtil.parseDate("2020-06-01"), false);
-        System.out.println(l);
-    }
 }

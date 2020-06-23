@@ -10,13 +10,12 @@ import com.mengzhaoxu.eblog.oss.cloud.OSSFactory;
 import com.mengzhaoxu.eblog.service.PostService;
 import com.mengzhaoxu.eblog.service.UserService;
 import com.mengzhaoxu.eblog.shiro.AccountProfile;
-import com.qiniu.common.QiniuException;
+import com.qiniu.storage.model.FileInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -103,37 +102,24 @@ public class UserController extends BaseController{
         if (url!=null){
             AccountProfile profile = getProfile();
             User user = userService.getById(profile.getId());
-            String key = user.getAvatar();
+//            .substring(1)
+            String key = user.getAvatar().substring(user.getAvatar().indexOf("/")).substring(1);
             user.setAvatar(url);
             boolean b = userService.updateById(user);
             if (b){
                 profile.setAvatar(url);
-                if (!StrUtil.isBlank(key)){
-                    String deleteKey = key.substring(key.indexOf("/"));
-                    OSSFactory.build().delete(deleteKey);
+                if (!StrUtil.isBlank(key) && !key.equals("test.png")){
+                    try {
+                        FileInfo stat = OSSFactory.build().stat(key);
+                        OSSFactory.build().delete(key);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
                 }
             }
         }
         return Result.success(CodeMsg.SUCCESS).action("/user/set#avatar");
-
     }
-
-
-
-    @RequestMapping("test")
-    public Result test(){
-        String key= "2a3b4d098e274090851a8368d27de83c.jpg";
-        try {
-            OSSFactory.build().delete(key);
-        } catch (QiniuException e) {
-            e.printStackTrace();
-            return Result.error("cuowu");
-        }
-        return Result.success(CodeMsg.SUCCESS);
-    }
-
-
-
-
 
 }
