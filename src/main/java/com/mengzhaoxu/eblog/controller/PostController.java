@@ -2,6 +2,7 @@ package com.mengzhaoxu.eblog.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.mengzhaoxu.eblog.common.result.Result;
 import com.mengzhaoxu.eblog.entity.Post;
 import com.mengzhaoxu.eblog.service.CommentService;
 import com.mengzhaoxu.eblog.service.PostService;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author yixin
@@ -50,5 +53,8 @@ public class PostController extends BaseController{
 
         return "post/detail";
     }
+
+
+
 
 }

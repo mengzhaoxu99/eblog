@@ -39,6 +39,9 @@
     <#include "/inc/right.ftl" />
   </div>
 </div>
+  <script>
+    layui.cache.page = 'jie';
+  </script>
 
 
 </@layout>
