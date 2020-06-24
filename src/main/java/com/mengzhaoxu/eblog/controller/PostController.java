@@ -4,12 +4,15 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.mengzhaoxu.eblog.common.result.Result;
 import com.mengzhaoxu.eblog.entity.Post;
+import com.mengzhaoxu.eblog.service.CategoryService;
 import com.mengzhaoxu.eblog.service.CommentService;
 import com.mengzhaoxu.eblog.service.PostService;
 import com.mengzhaoxu.eblog.vo.CommentVo;
 import com.mengzhaoxu.eblog.vo.PostVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +33,9 @@ public class PostController extends BaseController{
 
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private CategoryService categoryService;
 
 
     @GetMapping("/category/{id:\\d*}")
@@ -54,6 +60,19 @@ public class PostController extends BaseController{
         return "post/detail";
     }
 
+
+    @GetMapping("post/edit")
+    public String edit(){
+        String id = req.getParameter("id");
+        if(!StringUtils.isEmpty(id)) {
+            Post post = postService.getById(id);
+            Assert.isTrue(post != null, "改帖子已被删除");
+            Assert.isTrue(post.getUserId().longValue() == getProfileId().longValue(), "没权限操作此文章");
+            req.setAttribute("post", post);
+        }
+        req.setAttribute("categories", categoryService.list());
+        return "/post/edit";
+    }
 
 
 
