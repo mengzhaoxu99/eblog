@@ -6,7 +6,7 @@ public class CodeMsg {
 	private String msg;
 
 	//通用的错误码
-	public static CodeMsg SUCCESS = new CodeMsg(0, "success");
+	public static CodeMsg SUCCESS = new CodeMsg(0, "操作成功");
 	public static CodeMsg SUCCESS_REG = new CodeMsg(0, "注册成功");
 	public static CodeMsg SUCCESS_LOG = new CodeMsg(0, "登录成功");
 

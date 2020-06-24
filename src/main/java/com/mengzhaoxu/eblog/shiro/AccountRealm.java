@@ -1,5 +1,6 @@
 package com.mengzhaoxu.eblog.shiro;
 import com.mengzhaoxu.eblog.service.UserService;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -29,6 +30,8 @@ public class AccountRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         UsernamePasswordToken token =(UsernamePasswordToken) authenticationToken;
         AccountProfile accountProfile = userService.login(token.getUsername(),String.valueOf(token.getPassword()));
+        SecurityUtils.getSubject().getSession().setAttribute("profile",accountProfile);
+
         SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(accountProfile,token.getCredentials(),getName());
         return info;
     }

@@ -3,7 +3,7 @@
 <@layout "我的主页">
 
   <div class="fly-home fly-panel" style="background-image: url();">
-    <img src="${user.avatar}" alt="${user.username}">
+    <img src="http://${user.avatar}" alt="${user.username}">
     <i class="iconfont icon-renzheng" title="Fly社区认证"></i>
     <h1>
       ${user.username}

@@ -50,13 +50,13 @@ public class ShiroConfig {
 //
         hashMap.put("/user/home", "authc");
         hashMap.put("/user/set", "authc");
-//        hashMap.put("/user/upload", "auth");
-//        hashMap.put("/user/index", "auth");
-//        hashMap.put("/user/public", "auth");
-//        hashMap.put("/user/collection", "auth");
-//        hashMap.put("/user/mess", "auth");
-//        hashMap.put("/msg/remove/", "auth");
-//        hashMap.put("/message/nums/", "auth");
+        hashMap.put("/user/upload", "authc");
+        hashMap.put("/user/index", "authc");
+        hashMap.put("/user/public", "authc");
+        hashMap.put("/user/collection", "authc");
+        hashMap.put("/user/message", "authc");
+        hashMap.put("/message/remove/", "authc");
+        hashMap.put("/message/nums/", "authc");
 //
 //        hashMap.put("/collection/remove/", "auth");
 //        hashMap.put("/collection/find/", "auth");

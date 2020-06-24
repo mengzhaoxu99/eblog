@@ -23,17 +23,18 @@
     <#nested />
     <#include "/inc/footer.ftl" />
     <script>
-        // layui.cache.page = '';
+
         layui.cache.user = {
-            username: '游客'
-            ,uid: -1
-            ,avatar: '../res/images/avatar/00.jpg'
+            username: '${(profile.username)?default("游客")}'
+            ,uid: ${(profile.id)?default("-1")}
+            ,avatar: 'http://${(profile.id)?default("qc7zz5ce9.bkt.clouddn.com/test.png")}'
             ,experience: 83
-            ,sex: '男'
+            ,sex: '${(profile.sex)?default("男")}'
         };
+
         layui.config({
             version: "3.0.0"
-            ,base: '../res/mods/' //这里实际使用时，建议改成绝对路径
+            ,base: '/res/mods/' //这里实际使用时，建议改成绝对路径
         }).extend({
             fly: 'index'
         }).use('fly');

@@ -45,5 +45,6 @@ public class UserMessage extends BaseEntity {
      */
     private Integer type;
 
+    private Integer status;
 
 }
