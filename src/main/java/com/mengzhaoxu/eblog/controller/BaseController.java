@@ -26,10 +26,12 @@ public class BaseController {
     }
 
     protected AccountProfile getProfile(){
-
        return (AccountProfile) SecurityUtils.getSubject().getPrincipal();
     }
     protected Long getProfileId() {
+        if (getProfile() == null){
+          return -1L;
+        }
         return getProfile().getId();
     }
 

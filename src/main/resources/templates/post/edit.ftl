@@ -1,7 +1,7 @@
 <#include "/inc/layout.ftl" />
 
 <@layout "添加或编辑博客">
-<div class="layui-container fly-marginTop">
+  <div class="layui-container fly-marginTop">
     <div class="fly-panel" pad20 style="padding-top: 5px;">
       <div class="layui-form layui-form-pane">
         <div class="layui-tab layui-tab-brief" lay-filter="user">
@@ -26,14 +26,14 @@
                   <div class="layui-col-md9">
                     <label for="L_title" class="layui-form-label">标题</label>
                     <div class="layui-input-block">
-                      <input type="text" id="L_title" name="title" value="${(post.title)?default("")}" required lay-verify="required" autocomplete="off" class="layui-input">
-                      <input type="hidden" name="id" value="${(post.id)?default(-1)}">
+                      <input type="text" id="L_title" name="title" value="${(post.title)!}" required lay-verify="required" autocomplete="off" class="layui-input">
+                      <input type="hidden" name="id" value="${(post.id)!}">
                     </div>
                   </div>
                 </div>
                 <div class="layui-form-item layui-form-text">
                   <div class="layui-input-block">
-                    <textarea id="L_content" name="content" required lay-verify="required" placeholder="详细描述" class="layui-textarea fly-editor" style="height: 260px;">${(post.content)?default("")}</textarea>
+                    <textarea id="L_content" name="content" required lay-verify="required" placeholder="详细描述" class="layui-textarea fly-editor" style="height: 260px;">${(post.content)!}</textarea>
                   </div>
                 </div>
                 <div class="layui-form-item">
@@ -47,7 +47,7 @@
     </div>
   </div>
 
-<script>
-  layui.cache.page = 'jie';
-</script>
+  <script>
+    layui.cache.page = 'jie';
+  </script>
 </@layout>

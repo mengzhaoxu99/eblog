@@ -38,16 +38,16 @@
 <#macro plisting post>
 
     <li>
-        <a href="user/${post.authorId}" class="fly-avatar">
-            <img src="http://${post.authorAvatar}" alt="${post.authorName}">
+        <a href="user/${(post.authorId)!}" class="fly-avatar">
+            <img src="http://${(post.authorAvatar)!}" alt="${(post.authorName)!}">
         </a>
         <h2>
             <a class="layui-badge">${post.categoryName}</a>
-            <a href="/post/${post.id}">${post.title}</a>
+            <a href="/post/${(post.id)!}">${(post.title)!}</a>
         </h2>
         <div class="fly-list-info">
-            <a href="user/${post.authorId}" link>
-                <cite>${post.authorName}</cite>
+            <a href="user/${(post.authorId)!}" link>
+                <cite>${(post.authorName)!}</cite>
                 <!--
                 <i class="iconfont icon-renzheng" title="认证信息：XXX"></i>
                 <i class="layui-badge fly-badge-vip">VIP3</i>

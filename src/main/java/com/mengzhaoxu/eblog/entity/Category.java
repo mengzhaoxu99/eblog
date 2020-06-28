@@ -1,6 +1,5 @@
 package com.mengzhaoxu.eblog.entity;
 
-import com.mengzhaoxu.eblog.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

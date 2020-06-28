@@ -1,6 +1,7 @@
 package com.mengzhaoxu.eblog.service.impl;
 
 import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -85,6 +86,24 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
 
 
 
+    }
+
+    @Override
+    public void incrCommentCountAndUnionForWeekRank(long postId, boolean isIncr) {
+        String  currentKey = "day:rank:" + DateUtil.format(new Date(), DatePattern.PURE_DATE_FORMAT);
+        redisUtil.zIncrementScore(currentKey, postId, isIncr? 1: -1);
+
+        Post post = this.getById(postId);
+
+        // 7天后自动过期(15号发表，7-（18-15）=4)
+        long between = DateUtil.between(new Date(), post.getCreated(), DateUnit.DAY);
+        long expireTime = (7 - between) * 24 * 60 * 60; // 有效时间
+
+        // 缓存这篇文章的基本信息
+        this.hashCachePostIdAndTitle(post, expireTime);
+
+        // 重新做并集
+        this.zunionAndStoreLastWeekForRank();
     }
 
     /**

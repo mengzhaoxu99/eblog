@@ -46,9 +46,10 @@ public class ShiroConfig {
         filterFactoryBean.setFilters(MapUtil.of("auth", authFilter()));
 
         Map<String, String> hashMap = new LinkedHashMap<>();
-//
-//        hashMap.put("/res/**", "anon");
-//
+
+        hashMap.put("/websocket", "anon");
+        hashMap.put("/login", "anon");
+        hashMap.put("/res/**", "anon");
         hashMap.put("/user/home", "auth");
         hashMap.put("/user/set", "auth");
         hashMap.put("/user/upload", "auth");
@@ -58,18 +59,18 @@ public class ShiroConfig {
         hashMap.put("/user/message", "auth");
         hashMap.put("/message/remove/", "auth");
         hashMap.put("/message/nums/", "auth");
-//
+
         hashMap.put("/collection/remove/", "auth");
         hashMap.put("/collection/find/", "auth");
         hashMap.put("/collection/add/", "auth");
-//
-//        hashMap.put("/post/edit", "auth");
-//        hashMap.put("/post/submit", "auth");
-//        hashMap.put("/post/delete", "auth");
-//        hashMap.put("/post/reply/", "auth");
-//
-//        hashMap.put("/websocket", "anon");
-        hashMap.put("/**", "anon");
+        hashMap.put("/message/reply/", "auth");
+
+
+        hashMap.put("/post/edit", "auth");
+        hashMap.put("/post/submit", "auth");
+        hashMap.put("/post/delete", "auth");
+        hashMap.put("/post/reply/", "auth");
+
         filterFactoryBean.setFilterChainDefinitionMap(hashMap);
 
         return filterFactoryBean;

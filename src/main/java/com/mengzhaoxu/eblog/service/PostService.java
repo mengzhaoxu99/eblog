@@ -25,5 +25,8 @@ public interface PostService extends IService<Post> {
     //初始化redis热榜数据
     void initWeekRank();
 
+    //增加一条评论数量
+    void incrCommentCountAndUnionForWeekRank(long postId, boolean isIncr);
+
 
 }

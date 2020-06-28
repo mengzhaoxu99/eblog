@@ -85,7 +85,6 @@ public class AuthController extends BaseController{
     @ResponseBody
     @PostMapping("login")
     public Result doLogin(String email,String password,String vercode){
-
         if(StrUtil.isBlank(email) || StrUtil.isBlank(password)){
             return Result.error(CodeMsg.LOGIN_ERROR);
         }
