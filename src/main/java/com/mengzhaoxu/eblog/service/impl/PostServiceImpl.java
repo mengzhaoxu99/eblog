@@ -106,6 +106,11 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
         this.zunionAndStoreLastWeekForRank();
     }
 
+    @Override
+    public PostVo selectOnePost(QueryWrapper<Post> wrapper) {
+        return postMapper.selectOnePost(wrapper);
+    }
+
     /**
      * 本周评论并集
      */

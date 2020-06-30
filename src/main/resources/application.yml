@@ -18,6 +18,18 @@ spring:
     password: Mzx@123456
     host: 123.206.81.22
     port: 6379
+  data:
+    elasticsearch:
+      cluster-name: zhaoxu
+      cluster-nodes: 10.211.55.4:9300
+      repositories:
+        enabled: true
+  rabbitmq:
+    host: 123.206.81.22
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
 
 #qiniu:
 #  accessKey: kDBs-jbChhKuqs1ZAAzwOj6EAb7h1KTtL8-zSwOu

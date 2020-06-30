@@ -37,7 +37,7 @@ public class CodeMsg {
 
 
 
-	private CodeMsg( ) {
+	public CodeMsg() {
 	}
 
 	private CodeMsg(int status, String msg ) {

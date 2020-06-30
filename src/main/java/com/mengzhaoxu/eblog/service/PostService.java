@@ -29,4 +29,5 @@ public interface PostService extends IService<Post> {
     void incrCommentCountAndUnionForWeekRank(long postId, boolean isIncr);
 
 
+    PostVo selectOnePost(QueryWrapper<Post> eq);
 }
