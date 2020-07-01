@@ -2,6 +2,8 @@ package com.mengzhaoxu.eblog.controller;
 
 import cn.hutool.core.map.MapUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.mengzhaoxu.eblog.common.mq.MQSender;
+import com.mengzhaoxu.eblog.common.mq.PostMqIndexMessage;
 import com.mengzhaoxu.eblog.common.result.CodeMsg;
 import com.mengzhaoxu.eblog.common.result.Result;
 import com.mengzhaoxu.eblog.entity.Post;
@@ -39,6 +41,9 @@ public class PostController extends BaseController{
     private UserMessageService messageService;
     @Autowired
     private UserCollectionService collectionService;
+    @Autowired
+    private MQSender mqSender;
+
 
 
     @GetMapping("{id:\\d*}")
@@ -66,6 +71,8 @@ public class PostController extends BaseController{
             req.setAttribute("post", post);
         }
         req.setAttribute("categories", categoryService.list());
+
+
         return "/post/edit";
     }
 
@@ -100,6 +107,10 @@ public class PostController extends BaseController{
             postService.updateById(tempPost);
         }
 //        return Result.success(CodeMsg.SUCCESS);
+
+        //发送mq消息
+
+        mqSender.sendESMessage(new PostMqIndexMessage(post.getId(), PostMqIndexMessage.CREATE_OR_UPDATE));
         return Result.success(CodeMsg.SUCCESS).action("/post/"+post.getId());
     }
 
@@ -121,6 +132,9 @@ public class PostController extends BaseController{
         collectionService.removeByMap(MapUtil.of("post_id", id));
 //        amqpTemplate.convertAndSend(RabbitConfig.es_exchage, RabbitConfig.es_bind_key,
 //                new PostMqIndexMessage(post.getId(), PostMqIndexMessage.REMOVE));
+
+        mqSender.sendESMessage(new PostMqIndexMessage(post.getId(), PostMqIndexMessage.REMOVE));
+
 
         return Result.success(CodeMsg.SUCCESS);
     }

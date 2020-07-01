@@ -29,9 +29,9 @@ public class MQSender {
 
 
     public void sendESMessage(Object message){
-        String s = String.valueOf(message);
+//        String s = String.valueOf(message);
         amqpTemplate.convertAndSend(MqConfig.POST_EXCHANGE,MqConfig.POST_ROUTINGKEY,message);
-        log.info("send"+s);
+        log.info("send"+message);
     }
 //
 //    public void sendTopic(Object message){

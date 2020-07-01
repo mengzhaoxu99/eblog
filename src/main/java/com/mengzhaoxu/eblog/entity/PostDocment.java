@@ -37,7 +37,7 @@ public class PostDocment implements Serializable {
     private String categoryName;
 
     private Integer level;
-    private Boolean recomment;
+    private Boolean recommend;
 
     private Integer commentCount;
     private Integer viewCount;

@@ -24,13 +24,13 @@ public class MqConfig {
     /**
      * exchange
      */
-    public static final String POST_EXCHANGE = "topic.exchange";
+    public static final String POST_EXCHANGE = "post.exchange";
 
 
     /**
      * routingkey
      */
-    public static final String POST_ROUTINGKEY = "post.exchange";
+    public static final String POST_ROUTINGKEY = "post.exchangekey";
 
     @Bean
     public Queue post_queue(){
@@ -43,13 +43,13 @@ public class MqConfig {
      */
     @Bean
     public Queue queue(){
-        return new Queue(POST_QUEUE,true);
+        return new Queue(POST_QUEUE);
     }
 
 
     @Bean
     public DirectExchange directExchange(){
-        return new DirectExchange(POST_EXCHANGE,true,false);
+        return new DirectExchange(POST_EXCHANGE);
     }
 
     @Bean
